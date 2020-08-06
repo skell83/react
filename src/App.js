@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Todo from './components/Todo';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
@@ -24,6 +24,9 @@ const App = () =>{
     btnToggle ? setToggle(false) : setToggle(true);
     console.log(btnToggle);
   }
+  useEffect( () => {
+    console.log("디텍트");
+  },[todos]) // 체크할요소
   const onCheckToggle = (id) => { // 체크박스 토글 만들기
     setTodos(todos =>  // 2. 그리고 업데이트
       todos.map (todo =>  // todos 를 다 뿌림

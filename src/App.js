@@ -3,21 +3,24 @@ import Todo from './components/Todo';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 
+
 let nextId = 0; // index 고정만들기 함수 안에 넣으면 계속 동작해서 초기화됨
 const App = () =>{ 
   const [todos, setTodos] = useState([]); // 배열로 초기화
   const [btnToggle, setToggle] = useState(true);
+  const [id, setId ] = useState(0);
+  
   const onInsertTodo = (text) =>{ // 매계변수로 text값 가져오기
     if(text === "") {
       return alert("할 일을 입력해주세요");
     }else{
       const todo = {   // 받아온 값을 기존에 존재하던 형태로 밀어 넣기 위해서 임시 변수를 생성
-        id:nextId,
+        id:id,
         text, //이름이 똑같아서 그냥 text로 퉁 이게 된다고?!?!?
         checked:false
       }
       setTodos(todos=> todos.concat(todo));  //push를 하면 이전 상태값이 저장이 되지 않음 concat을하면 이전 상태값이 저장이됨, TodoForm에서 받아온 text를 실제로 추가함
-      nextId++; // id값 증가
+      setId(++id); // id값 증가
     }
   }
   const toggleClick = () => {
